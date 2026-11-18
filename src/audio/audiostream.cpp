@@ -136,6 +136,9 @@ void AudioStream::play(const std::string &filename,
 	}
 
 	setVolume(Base, _volume);
+	/* A new BGM must not inherit the ME ducking volume. */
+	if (!extPaused)
+		setVolume(External, 1.0f);
 	stream.setPitch(_pitch);
 
 	if (offset > 0)
